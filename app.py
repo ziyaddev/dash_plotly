@@ -1,6 +1,12 @@
 # Run this app with `python app.py` and
 # visit http://127.0.0.1:8050/ in your web browser.
 
+""" Todo List :
+- Load CSV button
+- semi-colons separator (change parameter "sep" in pd.to_datetime() )
+- 
+"""
+
 from datetime import date, datetime
 
 import dash
@@ -48,7 +54,20 @@ fig.update_layout(title='Daikin Chiller Trend',
 #                  #size="population", color="continent", hover_name="country",
 #                  #log_x=True #size_max=60)
 
-fig.update_xaxes(rangeslider_visible=True)
+fig.update_xaxes(
+    rangeslider_visible=True,
+    rangeselector=dict(
+        buttons=list([
+            dict(count=1, label="1h", step="hour", stepmode="backward"),
+            dict(count=2, label="2h", step="hour", stepmode="backward"),
+            dict(count=6, label="6h", step="hour", stepmode="backward"),
+            dict(count=1, label="YTD", step="year", stepmode="todate"),
+            dict(count=1, label="1y", step="year", stepmode="backward"),
+            dict(step="all")
+        ])
+    )
+)
+
 fig.show()
 
 app.layout = html.Div([
