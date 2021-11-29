@@ -19,7 +19,7 @@ from dash import dcc, html
 
 app = dash.Dash(__name__)
 
-df = pd.read_csv('data_25_nov_virgule.csv')
+df = pd.read_csv('data_29_nov_21_gf1_c1.csv')
 
 #fig = px.scatter(df, x="gdp per capita", y="life expectancy",
 
@@ -36,7 +36,7 @@ fig.add_trace(go.Scatter(x=date_dfirst, y=df.condensing_temp, name='Condensing T
 fig.add_trace(go.Scatter(x=date_dfirst, y=df.liquid_temp, name = 'Liquid Temp',
                          line=dict(color='orange', width=1)))
 fig.add_trace(go.Scatter(x=date_dfirst, y=df.subcooling, name='Subcooling',
-                         line=dict(color='orange', width=1)))
+                         line=dict(color='limegreen', width=1)))
 
 fig.add_trace(go.Scatter(x=date_dfirst, y=df.evaporating_temp, name='Evaporating Temp',
                          line = dict(color='royalblue', width=1)))
@@ -61,8 +61,9 @@ fig.update_xaxes(
             dict(count=1, label="1h", step="hour", stepmode="backward"),
             dict(count=2, label="2h", step="hour", stepmode="backward"),
             dict(count=6, label="6h", step="hour", stepmode="backward"),
-            dict(count=1, label="YTD", step="year", stepmode="todate"),
-            dict(count=1, label="1y", step="year", stepmode="backward"),
+            dict(count=12, label="12h", step="hour", stepmode="backward"),
+            dict(count=1, label="1D", step="day", stepmode="todate"),
+            dict(count=2, label="2D", step="day", stepmode="backward"),
             dict(step="all")
         ])
     )
